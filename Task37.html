@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calculate() {
+            var num1 = document.getElementsByName("num1")[0].value;
+            var num2 = document.getElementsByName("num2")[0].value;
+            var results = document.getElementById("results");
+            results.innerHTML = "";
+            results.innerHTML += "<p>The Result is: " + (num1 * num2) + "</p>";
+        }
+        
+        function divide() {
+            var num1 = document.getElementsByName("num1")[0].value;
+            var num2 = document.getElementsByName("num2")[0].value;
+            var results = document.getElementById("results");
+            results.innerHTML = "";
+            results.innerHTML += "<p>The Result is: " + (num1 / num2) + "</p>";
+        }
+    </script>
+</head>
+<body>
+    1st Number: <input type="text" placeholder="Enter a Number:" name="num1"><br><br>
+    2nd Number: <input type="text" placeholder="Enter a Number:" name="num2"><br><br>
+    <input type="button" value="Multiply" onclick="calculate()">
+    <input type="button" value="Divide" onclick="divide()">
+    <div id="results"></div>
+</body>
+</html>

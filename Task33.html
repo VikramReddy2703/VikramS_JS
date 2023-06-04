@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation Example</title>
+    <style>
+        .error {
+            color: red;
+        }
+        .error-input {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Validation Example</h1>
+    <form id="myForm" onsubmit="validateForm(event)">
+        <table>
+            <tr>
+                <td><label for="name">Name:</label></td>
+                <td><input type="text" id="name" name="name"><span id="nameError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" id="email" name="email"><span id="emailError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label for="website">Website:</label></td>
+                <td><input type="url" id="website" name="website"><span id="websiteError" class="error"></td>
+            </tr>
+            <tr>
+                <td><label for="message">Message:</label></td>
+                <td><textarea id="message" name="message"></textarea><span id="messageError" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><input type="submit" class="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    </form>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            clearErrors();
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var website = document.getElementById('website').value;
+            var message = document.getElementById('message').value;
+            var emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            var websitePattern = /^(www|http|https):\/\/[^ "]+$/;
+            if (name === "") {
+                displayError("nameError", "This field is required.");
+                document.getElementById('name').classList.add('error-input');
+            }
+            if (email === "") {
+                displayError("emailError", "Please enter your email address.");
+                document.getElementById('email').classList.add('error-input');
+            } else if (!emailPattern.test(email)) {
+                displayError("emailError", "A Valid email address is required.");
+                document.getElementById('email').classList.add('error-input');
+            }
+            if (website === "") {
+                displayError("websiteError", "Please enter your website URL.");
+                document.getElementById('website').classList.add('error-input');
+            } else if (!websitePattern.test(website)) {
+                displayError("websiteError", "A valid URL is required.");
+                document.getElementById('website').classList.add('error-input');
+            }
+            if (message === "") {
+                displayError("messageError", "Please enter a message.");
+                document.getElementById('message').classList.add('error-input');
+            }
+            if (name !== "" && email !== "" && emailPattern.test(email) && website !== "" && websitePattern.test(website) && message !== "") {
+                document.getElementById("myForm").submit();
+            }
+        }
+        function displayError(elementId, errorMessage) {
+            var errorElement = document.getElementById(elementId);
+            errorElement.innerHTML = errorMessage;
+        }
+        function clearErrors() {
+            var errorElements = document.getElementsByClassName("error");
+            for (var i = 0; i < errorElements.length; i++) {
+                errorElements[i].innerHTML = "";
+            }
+            var inputElements = document.querySelectorAll('.error-input');
+            for (var j = 0; j < inputElements.length; j++) {
+                inputElements[j].classList.remove('error-input');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 75vh;
+            margin: 0;
+        }
+        .error {
+            color: red;
+            position: relative;
+            text-align: end;
+        }
+        form {
+            border: 2px;
+            width: 25%;
+            max-width: 100%;
+            padding: 20px;
+            text-align: left;
+            background: linear-gradient(135deg, #f5e65e, #e62c85);
+        }
+        .submit {
+          width: fit-content;
+          max-width: 320px;
+          background-color: red;
+          border-radius: 10px;
+          display: block;
+          margin: 0 auto;
+        }
+        .web {
+            text-align: end;
+        }
+        h1{
+            text-align: center;
+            color: blue;
+        }
+</style>
+</head>
+<body>
+    <form>
+        <h1>Registartion-form</h1>
+        <table>
+            <tr>
+              <td><label for="firstname">First Name:</label></td>
+              <td><input type="text" id="firstname" name="firstname"></td>
+              <td><span id="firstnameError" class="error"></span></td>
+            </tr>
+            <tr>
+              <td><label for="lastname">Last Name:</label></td>
+              <td><input type="text" id="lastname" name="lastname"></td>
+              <td><span id="lastnameError" class="error"></span></td>
+            </tr>
+            <tr>
+              <td><label for="email">Email:</label></td>
+              <td><input type="email" id="email" name="email"></td>
+              <td><span id="emailError" class="error"></span></td>
+            </tr>
+            <tr>
+              <td><label for="password">Password:</label></td>
+              <td><input type="password" id="password" name="password"></td>
+              <td><span id="passwordError" class="error"></span></td>
+            </tr>
+            <tr>
+              <td><label for="reenterpassword">Re-enter Password:</label></td>
+              <td><input type="password" id="reenterpassword" name="reenterpassword"></td>
+              <td><span id="reenterpasswordError" class="error"></span></td>
+            </tr>
+            <tr>
+              <td><label>Gender:</label></td>
+              <td>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+              </td>
+              <td><span id="genderError" class="error"></span></td>
+            </tr>
+            <tr>
+              <td><label for="age">Age:</label></td>
+              <td><input type="number" id="age" name="age"></td>
+              <td><span id="ageError" class="error"></span></td>
+            </tr>
+            <tr>
+              <td><label for="phone">Phone Number:</label></td>
+              <td><input type="tel" id="phone" name="phone"></td>
+              <td><span id="phoneError" class="error"></span></td>
+            </tr>
+            <tr>
+              <td><label for="address">Address:</label></td>
+              <td><textarea id="address" name="address"></textarea></td>
+              <td><span id="addressError" class="error"></span></td>
+            </tr>
+            <tr>
+              <td><label for="country">State:</label></td>
+              <td>
+                <select id="country" name="country">
+                  <option value="">Select a country</option>
+                  <option value="india">India</option>
+                  <option value="USA">USA</option>
+                  <option value="England">England</option>
+                </select>
+              </td>
+              <td><span id="countryError" class="error"></span></td>
+            </tr>
+            <tr>
+              <td><label>Languages:</label></td>
+              <td>
+                <input type="radio" id="english" name="languages" value="english">
+                <label for="english">English</label>
+                <input type="radio" id="hindi" name="languages" value="hindi">
+                <label for="hindi">Hindi</label>
+              </td>
+              <td><span id="languagesError" class="error"></span></td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <input type="checkbox" id="declaration">
+                <label for="declaration">Hereby I declare all the given details are true.</label>
+                <span id="declarationError" class="error"></span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" class="web">Log in to <a href="#">Ethnus</a> Website</td>
+            </tr>
+            <tr>
+              <td colspan="3"><input type="submit" value="Register" class="submit"></td>
+            </tr>
+          </table>          
+    </form>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const errorMessages = document.querySelectorAll('.error');
+            errorMessages.forEach(function(errorMessage) {
+                errorMessage.textContent = '';
+            });
+            let isValid = true;
+            const firstnameInput = document.getElementById('firstname');
+            const firstnameError = document.getElementById('firstnameError');
+            if (firstnameInput.value === '') {
+                firstnameError.textContent = 'POOR';
+                isValid = false;
+            }
+            const lastnameInput = document.getElementById('lastname');
+            const lastnameError = document.getElementById('lastnameError');
+            if (lastnameInput.value === '') {
+                lastnameError.textContent = 'POOR';
+                isValid = false;
+            }
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            if (emailInput.value === '') {
+                emailError.textContent = 'POOR';
+                isValid = false;
+            }
+            const passwordInput = document.getElementById('password');
+            const passwordError = document.getElementById('passwordError');
+            if (passwordInput.value === '') {
+                passwordError.textContent = 'POOR';
+                isValid = false;
+            }
+            const reenterpasswordInput = document.getElementById('reenterpassword');
+            const reenterpasswordError = document.getElementById('reenterpasswordError');
+            if (reenterpasswordInput.value === '') {
+                reenterpasswordError.textContent = 'POOR';
+                isValid = false;
+            }
+            const genderInputs = document.querySelectorAll('input[name="gender"]');
+            const genderError = document.getElementById('genderError');
+            let genderChecked = false;
+            genderInputs.forEach(function(genderInput) {
+                if (genderInput.checked) {
+                    genderChecked = true;
+                }
+            });
+            if (!genderChecked) {
+                genderError.textContent = 'POOR';
+                isValid = false;
+            }
+            const ageInput = document.getElementById('age');
+            const ageError = document.getElementById('ageError');
+            if (ageInput.value === '') {
+                ageError.textContent = 'POOR';
+                isValid = false;
+            }
+            const phoneInput = document.getElementById('phone');
+            const phoneError = document.getElementById('phoneError');
+            if (phoneInput.value === '') {
+                phoneError.textContent = 'POOR';
+                isValid = false;
+            }
+            const addressInput = document.getElementById('address');
+            const addressError = document.getElementById('addressError');
+            if (addressInput.value === '') {
+                addressError.textContent = 'POOR';
+                isValid = false;
+            }
+            const countryInput = document.getElementById('country');
+            const countryError = document.getElementById('countryError');
+            if (countryInput.value === '') {
+                countryError.textContent = 'POOR';
+                isValid = false;
+            }
+            const languagesInputs = document.querySelectorAll('input[name="languages"]');
+            const languagesError = document.getElementById('languagesError');
+            let languagesChecked = false;
+            languagesInputs.forEach(function(languagesInput) {
+                if (languagesInput.checked) {
+                    languagesChecked = true;
+                }
+            });
+            if (!languagesChecked) {
+                languagesError.textContent = 'POOR';
+                isValid = false;
+            }
+            const declarationInput = document.getElementById('declaration');
+            const declarationError = document.getElementById('declarationError');
+            if (!declarationInput.checked) {
+                declarationError.textContent = 'POOR';
+                isValid = false;
+            }
+            if (isValid) {
+                form.submit();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #train {
+      position: relative;
+      animation-name: moveTrain;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      width: 25%;
+      height: 25%;
+    }
+  </style>
+</head>
+<body>
+  <img id="train" src="Train2.JPG" alt="Train Image">
+    <br><br><br>
+  <button onclick="startAnimation()">Start Animation</button>
+  <button onclick="stopAnimation()">Stop Animation</button>
+  <script>
+    var trainElement = document.getElementById("train");
+    var trainAnimation;
+    var isAnimationPaused = false;
+
+    function startAnimation() {
+      if (isAnimationPaused) {
+        trainAnimation.play();
+        isAnimationPaused = false;
+      } else {
+        trainAnimation = trainElement.animate(
+          [{ left: "0" }, { left: "50%" }, { left: "100%" }],
+          { duration: 4000, iterations: Infinity }
+        );
+      }
+    }
+
+    function stopAnimation() {
+      trainAnimation.pause();
+      isAnimationPaused = true;
+    }
+  </script>
+</body>
+</html>
